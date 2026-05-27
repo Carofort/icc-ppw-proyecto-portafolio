@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importación oficial de Tailwind v4 */
+@import "tailwindcss";
+
+/* Configuración del tema y variables en Tailwind v4 */
+@theme {
+  --color-background: #fcf9f8;
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #594049;
+  --color-primary: #b3006b;
+  --color-on-primary: #ffffff;
+  --color-outline-variant: #e0bec8;
+  --color-secondary-fixed-dim: #fbb3c1;
+  --color-surface: #fcf9f8;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-lowest: #ffffff;
+  
+  /* Ajustes para espaciados y contenedores personalizados si los requiere v4 */
+  --spacing-margin-desktop: 64px;
+  --spacing-section-gap-mobile: 80px;
+  --spacing-section-gap-desktop: 160px;
+  --spacing-gutter: 32px;
+}
+
+/* Clases y utilidades personalizadas usando @utility (Sintaxis de v4) */
+@utility glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@utility grain-overlay {
+  position: relative;
+}
+
+@utility mesh-gradient {
+  background: 
+    radial-gradient(circle at 20% 30%, #ff9acb 0%, transparent 40%),
+    radial-gradient(circle at 70% 20%, #d28eff 0%, transparent 40%),
+    radial-gradient(circle at 40% 70%, #ffb07c 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #fbb1d4 0%, transparent 40%);
+  background-color: #ffffff; /* fondo base blanco */
+}
+
+@utility btn-hover-effect {
+  transition: transform 0.15s ease-out;
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Estilos base globales */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.font-title {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-hover-effect {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    background-color 0.4s ease;
+}
+
+.btn-hover-effect:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow:
+    0 12px 24px rgba(236, 72, 153, 0.18),
+    0 24px 60px rgba(236, 72, 153, 0.22);
+}

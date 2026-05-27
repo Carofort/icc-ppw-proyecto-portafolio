@@ -1,0 +1,48 @@
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .font-title {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+
+  <nav class="flex justify-between items-center px-6 md:px-[64px] py-4 max-w-[1280px] mx-auto">
+    
+    <div class="flex items-center gap-4 cursor-pointer" routerLink="/home">
+      <img alt="Carolina Fortmann avatar" 
+      class="w-10 h-10 rounded-full border border-outline-variant/30 object-cover"
+       src="/iniciales.jpg"/>
+      <span class="font-title text-[20px] font-semibold text-on-surface">Portafolio Proyecto Integrador</span>
+    </div>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a routerLink="/home" 
+         routerLinkActive="text-primary border-b-2 border-primary pb-1" 
+         [routerLinkActiveOptions]="{exact: true}"
+         class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Inicio</a>
+         
+      <a routerLink="/developers" 
+         routerLinkActive="text-primary border-b-2 border-primary pb-1"
+         class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Perfil</a>
+         
+      <a routerLink="/projects" 
+         routerLinkActive="text-primary border-b-2 border-primary pb-1"
+         class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Projectos</a>
+         
+      <a routerLink="/contact-requests" 
+         routerLinkActive="text-primary border-b-2 border-primary pb-1"
+         class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Solicitudes de Contacto</a>
+    </div>
+
+    <button class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest">
+      Iniciar Sesión
+    </button>
+  </nav>
+</header>
