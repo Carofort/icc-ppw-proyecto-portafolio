@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/home/home';
 import { Developers } from './features/developers/developers';
 import { ContactRequests } from './features/contact-requests/contact-requests';
 import { Projects } from './features/projects/projects';
 import { AuthPage } from './features/auth/pages/auth-page/auth-page';
 import { AdminRequests } from './features/admin-requests/admin-requests';
+import { Home } from './features/home/home';
 export const routes: Routes = [
 
     { path: '', component: Home},

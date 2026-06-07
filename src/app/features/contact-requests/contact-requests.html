@@ -1,5 +1,5 @@
 <main class="grain-overlay mesh-gradient">
-   <link
+  <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
     rel="stylesheet"
   />
@@ -10,8 +10,10 @@
           <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
             Ingeniería en ciencias de la computación
           </p>
-          <h2 class="text-[48px] font-title text-on-surface">Solicitud de Contacto: </h2>
-          <p class="text-on-surface-variant mt-4"> Rellene el siguiente formulario con sus datos personales:</p>
+          <h2 class="text-[48px] font-title text-on-surface">Solicitud de Contacto:</h2>
+          <p class="text-on-surface-variant mt-4">
+            Rellene el siguiente formulario con sus datos personales:
+          </p>
         </div>
       </div>
 
@@ -19,18 +21,17 @@
       <div
         class="glass rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5 p-8 md:p-12"
       >
-        <form class="space-y-8">
-
+        <form class="space-y-8" (ngSubmit)="enviarSolicitud()">
           <!-- Nombre -->
           <div>
-            <label
-              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
-            >
+            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
               Nombre completo
             </label>
 
             <input
               type="text"
+              name="nombre"
+              [(ngModel)]="nombre"
               placeholder="Ingresa tu nombre"
               class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
             />
@@ -38,14 +39,14 @@
 
           <!-- Correo -->
           <div>
-            <label
-              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
-            >
+            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
               Correo electrónico
             </label>
 
             <input
               type="email"
+              name="correo"
+              [(ngModel)]="correo"
               placeholder="correo@ejemplo.com"
               class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
             />
@@ -53,13 +54,13 @@
 
           <!-- Programador -->
           <div>
-            <label
-              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
-            >
+            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
               Programador
             </label>
 
             <select
+              name="programador"
+              [(ngModel)]="programador"
               class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
             >
               <option value="">Seleccionar programador</option>
@@ -69,14 +70,14 @@
 
           <!-- Proyecto -->
           <div>
-            <label
-              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
-            >
+            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
               Idea o descripción del proyecto
             </label>
 
             <textarea
               rows="6"
+              name="descripcion"
+              [(ngModel)]="descripcion"
               placeholder="Describe tu proyecto, requerimientos, objetivos y tecnologías deseadas..."
               class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 resize-none focus:outline-none focus:border-primary"
             ></textarea>
@@ -84,7 +85,6 @@
 
           <!-- Campos automáticos -->
           <div class="grid md:grid-cols-2 gap-6">
-
             <div>
               <label
                 class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
@@ -114,22 +114,20 @@
                 class="w-full rounded-xl border border-outline-variant/30 bg-gray-100 px-4 py-3"
               />
             </div>
-
           </div>
 
           <!-- Botón -->
           <div class="flex justify-center pt-4">
             <button
               type="submit"
+              (ngSubmit)="enviarSolicitud()"
               class="bg-primary text-on-primary py-4 px-10 rounded-full text-sm font-semibold uppercase tracking-widest btn-hover-effect transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               Enviar solicitud
             </button>
           </div>
-
         </form>
       </div>
-
     </div>
   </section>
 </main>

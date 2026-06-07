@@ -1,6 +1,8 @@
-import { Component, ElementRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
+import { DeveloperService } from '../../core/services/developer.service';
+import { Developer } from '../../core/interfaces/developer';
 
 @Component({
   selector: 'app-hero',
@@ -10,6 +12,25 @@ import { AuthService } from '../../core/services/auth';
   styleUrl: './app-hero.css',
 })
 export class AppHero implements OnInit {
+
+  private developerService = inject(DeveloperService);
+  private cdr = inject(ChangeDetectorRef);
+
+  developer?: Developer;
+  profileImage = '';
+
+  loadDeveloper(): void {
+    this.developerService.getDevelopers().subscribe({
+      next: (response) => {
+        this.developer = response.data[0];
+        this.profileImage = 'http://localhost:1337' + response.data[0].foto.url;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
 
   authService = inject(AuthService);
   private router = inject(Router);
@@ -25,6 +46,7 @@ export class AppHero implements OnInit {
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
+    this.loadDeveloper();
     // Añadimos la lógica de microinteracciones interactivas para las tarjetas que venía en el script nativo
     const cards = this.el.nativeElement.querySelectorAll('.glass');
     cards.forEach((card: HTMLElement) => {

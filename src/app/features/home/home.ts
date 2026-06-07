@@ -6,6 +6,5 @@ import { AppHero } from '../../components/app-hero/app-hero';
   standalone: true,
   imports: [AppHero],
   templateUrl: './home.html',
-  styleUrl: './home.css',
 })
 export class Home {}

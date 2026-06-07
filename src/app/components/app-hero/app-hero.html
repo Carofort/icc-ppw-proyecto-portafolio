@@ -45,7 +45,7 @@
       </div>
 
       <!-- Card Derecha - Perfil -->
-      <div class="lg:col-span-6 ">
+      <div class="lg:col-span-6">
         <div
           class="glass flex flex-col md:flex-row overflow-hidden rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5"
         >
@@ -53,17 +53,30 @@
             <img
               alt="Carolina Fortmann"
               class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              src="/img-perfil.jpeg"
+              [src]="profileImage"
             />
           </div>
           <div class="md:w-1/2 p-10 flex flex-col justify-center">
-            <h3 class="font-title text-[42px] leading-tight mb-2">Carolina Fortmann</h3>
+            <h3 class="font-title text-[42px] leading-tight mb-2">{{ developer?.nombre }}</h3>
+            <span
+              class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold mb-2"
+              [class.bg-green-100]="developer?.activo"
+              [class.text-green-700]="developer?.activo"
+              [class.bg-red-100]="!developer?.activo"
+              [class.text-red-700]="!developer?.activo"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full"
+                [class.bg-green-500]="developer?.activo"
+                [class.bg-red-500]="!developer?.activo"
+              ></span>
+              {{ developer?.activo ? 'Disponible' : 'No disponible' }}
+            </span>
             <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-6">
-              Estudiante de 5to Ciclo
+              {{ developer?.especialidad }}
             </p>
             <p class="text-base text-on-surface-variant mb-8 italic">
-              "Blending high-fashion editorial aesthetics with technical rigor to build memorable
-              digital products."
+              {{ developer?.descripcionBreve }}
             </p>
 
             <!-- Idiomas -->
@@ -242,7 +255,9 @@
         <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
           Proyectos Destacados
         </p>
-        <h2 class="text-[48px] font-semibold font-title text-on-surface">¡Hecha un vistazo a mis proyectos!</h2>
+        <h2 class="text-[48px] font-semibold font-title text-on-surface">
+          ¡Hecha un vistazo a mis proyectos!
+        </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
         <div
@@ -329,15 +344,16 @@
               </div>
               <h3 class="text-[32px] font-medium mb-2">Principios de JavaScript</h3>
               <p class="text-base text-on-surface-variant">
-                Realizado en Visual Studio Code, este proyecto se centra en la implementación de los principios básicos en JavaScript y HTML. 
-                El objetivo es demostrar cómo aplicar estos principios para mejorar la calidad, mantenibilidad y escalabilidad del código en proyectos de desarrollo web. 
+                Realizado en Visual Studio Code, este proyecto se centra en la implementación de los
+                principios básicos en JavaScript y HTML. El objetivo es demostrar cómo aplicar estos
+                principios para mejorar la calidad, mantenibilidad y escalabilidad del código en
+                proyectos de desarrollo web.
               </p>
             </div>
             <button
               class="shrink-0 w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
             >
-              <span routerLink="/projects"
-              class="material-symbols-outlined">ver</span>
+              <span routerLink="/projects" class="material-symbols-outlined">ver</span>
             </button>
           </div>
         </div>
