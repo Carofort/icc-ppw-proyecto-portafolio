@@ -13,9 +13,9 @@
     }
   </style>
 
-  <section class="min-h-screen flex items-center pt-50 pb-[40px] md:pb-[60px] px-6 md:px-[64px]">
-    <div class="max-w-[1280px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-[32px]">
-      <!-- Texto principal -->
+  <!-- Card Izquierda -->
+  <section class="min-h-screen flex items-center pt-50 pb-30px md:pb-50px px-6 md:px-[64px]">
+    <div class="max-w-1280px mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-[32px]">
       <div class="lg:col-span-6">
         <h1
           class="text-[32px] md:text-[56px] font-title font-bold text-on-surface leading-tight mb-8"
@@ -44,8 +44,8 @@
         </div>
       </div>
 
-      <!-- Card a la derecha -->
-      <div class="lg:col-span-6">
+      <!-- Card Derecha - Perfil -->
+      <div class="lg:col-span-6 ">
         <div
           class="glass flex flex-col md:flex-row overflow-hidden rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5"
         >
@@ -98,10 +98,9 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- Card Central - Especializaciones -->
   <section class="py-[40px] md:py-[60px] px-6 md:px-[64px]">
     <div class="max-w-[1280px] mx-auto">
-      <!-- Heading -->
       <div class="mb-16 text-center max-w-3xl mx-auto">
         <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
           Especializaciones
@@ -117,7 +116,7 @@
         </p>
       </div>
 
-      <!-- Grid -->
+      <!-- Grid de Especializaciones -->
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
         <!-- Card 1 -->
         <div
@@ -236,13 +235,14 @@
     </div>
   </section>
 
+  <!-- Grid Central - Proyectos -->
   <section class="py-[40px] md:py-[60px] px-6 md:px-[64px] pb-[10px] md:pb-[10px]" id="projects">
     <div class="w-full mx-auto">
       <div class="mb-16 text-center max-w-3xl mx-auto">
         <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
           Proyectos Destacados
         </p>
-        <h2 class="text-[48px] font-semibold font-title text-on-surface">Descubre nuestros proyectos</h2>
+        <h2 class="text-[48px] font-semibold font-title text-on-surface">¡Hecha un vistazo a mis proyectos!</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
         <div
@@ -258,8 +258,9 @@
               class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
             >
               <span
+                routerLink="/projects"
                 class="bg-white text-primary px-8 py-3 rounded-full text-sm font-semibold uppercase tracking-widest"
-                >Case Study</span
+                >más info</span
               >
             </div>
           </div>
@@ -304,8 +305,9 @@
               class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
             >
               <span
+                routerLink="/projects"
                 class="bg-white text-primary px-8 py-3 rounded-full text-sm font-semibold uppercase tracking-widest"
-                >Case Study</span
+                >más info</span
               >
             </div>
           </div>
@@ -314,23 +316,28 @@
               <div class="flex gap-2 mb-4">
                 <span
                   class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >Node.js</span
+                  >Visual Studio Code</span
                 >
                 <span
                   class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >Kubernetes</span
+                  >JavaScript</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
+                  >HTML</span
                 >
               </div>
-              <h3 class="text-[32px] font-medium mb-2">Vortex Engine</h3>
+              <h3 class="text-[32px] font-medium mb-2">Principios de JavaScript</h3>
               <p class="text-base text-on-surface-variant">
-                Sophisticated distributed processing engine for real-time data visualization and
-                analytics at scale.
+                Realizado en Visual Studio Code, este proyecto se centra en la implementación de los principios básicos en JavaScript y HTML. 
+                El objetivo es demostrar cómo aplicar estos principios para mejorar la calidad, mantenibilidad y escalabilidad del código en proyectos de desarrollo web. 
               </p>
             </div>
             <button
               class="shrink-0 w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
             >
-              <span class="material-symbols-outlined">ver</span>
+              <span routerLink="/projects"
+              class="material-symbols-outlined">ver</span>
             </button>
           </div>
         </div>
@@ -338,15 +345,14 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- Grid - Contacto -->
   <section class="py-[60px] md:py-[100px] px-6 md:px-[64px] pb-[40px] md:pb-[40px]" id="contact">
     <div class="max-w-[1280px] mx-auto">
-      <!-- Heading -->
       <div class="mb-16 text-center max-w-3xl mx-auto">
         <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">Contacto</p>
 
         <h2 class="text-[42px] md:text-[56px] font-title text-on-surface mb-6">
-          Trabajemos juntos
+          ¡Trabajemos juntos!
         </h2>
 
         <p class="text-lg text-on-surface-variant leading-relaxed">
@@ -357,18 +363,14 @@
 
       <!-- GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-        <!-- LEFT IMAGE -->
+        <!-- Imagen de la izquierda -->
         <div
           class="relative overflow-hidden rounded-[32px] border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl min-h-[650px]"
         >
           <img src="/img-hero2.png" alt="Contact" class="w-full h-full object-cover" />
-
-          <!-- Overlay -->
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"
           ></div>
-
-          <!-- Floating Text -->
           <div class="absolute bottom-10 left-10 right-10">
             <p class="text-white text-sm uppercase tracking-[0.3em] font-semibold mb-4">
               Frontend • UI/UX • Angular
@@ -380,7 +382,7 @@
           </div>
         </div>
 
-        <!-- RIGHT INFO CARD -->
+        <!-- Card Derecha - Contacto -->
         <div
           class="glass rounded-[32px] border border-outline-variant/30 p-10 hover:-translate-y-2 transition-all duration-500 shadow-xl flex flex-col justify-between"
         >
@@ -398,7 +400,6 @@
               arquitecturas escalables para aplicaciones interactivas.
             </p>
 
-            <!-- Contact items -->
             <div class="space-y-6">
               <div class="flex items-center gap-4">
                 <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -420,9 +421,8 @@
             explorar oportunidades!
           </p>
 
-          <!-- BUTTON -->
           <button
-            routerLink="/contact-requests"
+            (click)="goToRequest()"
             routerLinkActive="text-primary border-b-2 border-primary pb-1"
             class="bg-primary text-on-primary py-3 px-6 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest text-center"
           >
@@ -432,7 +432,7 @@
       </div>
     </div>
 
-    <!-- BACK TO TOP -->
+    <!-- Botón Volver al Inicio -->
     <div class="flex justify-center mt-16">
       <button
         (click)="scrollToTop()"

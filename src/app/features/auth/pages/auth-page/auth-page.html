@@ -1,0 +1,100 @@
+<main class="grain-overlay mesh-gradient min-h-screen">
+  <section class="flex items-center justify-center min-h-screen px-6 py-40">
+    <div
+      class="glass w-full max-w-md rounded-[32px] border border-outline-variant/30 p-10 shadow-xl shadow-tertiary/5"
+    >
+      <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
+        Solicitudes de Contacto
+      </p>
+
+      <h1 class="font-title text-[42px] mb-8">
+        @if (isLogin()) {
+          Iniciar sesión
+        } @else {
+          Crear cuenta
+        }
+      </h1>
+
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Correo -->
+
+        <div>
+          <label class="block mb-2 text-sm"> Correo electrónico </label>
+
+          <input
+            type="email"
+            formControlName="email"
+            class="w-full rounded-xl border border-outline-variant/30 p-4 bg-transparent focus:border-primary focus:outline-none"
+            placeholder="correo@ejemplo.com"
+          />
+        </div>
+
+        <!-- Contraseña -->
+
+        <div>
+          <label class="block mb-2 text-sm"> Contraseña </label>
+
+          <input
+            type="password"
+            formControlName="password"
+            class="w-full rounded-xl border border-outline-variant/30 p-4 bg-transparent focus:border-primary focus:outline-none"
+            placeholder="********"
+          />
+        </div>
+
+        @if (errorMessage()) {
+          <div class="text-red-500 text-sm">
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <button
+          type="button"
+          (click)="onGoogleLogin()"
+          [disabled]="isLoading()"
+          class="w-full py-4 rounded-full glass border border-outline-variant text-on-surface font-semibold text-sm uppercase tracking-widest btn-hover-effect flex items-center justify-center gap-3"
+        >
+          <img src="/logo-google.jpg" alt="Logo de Google" class="h-8 w-8" />
+
+          Continuar con Google
+        </button>
+
+        <button
+          type="submit"
+          [disabled]="authForm.invalid || isLoading()"
+          class="w-full bg-primary text-on-primary py-4 rounded-full uppercase tracking-widest font-semibold btn-hover-effect"
+        >
+          @if (isLoading()) {
+            Cargando...
+          } @else if (isLogin()) {
+            Iniciar sesión
+          } @else {
+            Registrarse
+          }
+        </button>
+      </form>
+
+      <div class="mt-8 text-center">
+        @if (isLogin()) {
+          <p>
+            ¿No tienes cuenta?
+
+            <button class="link text-primary ml-1 hover:text-pink-800 hover:underline transition-colors duration-200"
+                    (click)="toggleMode()">
+              Regístrate
+            </button>
+          </p>
+        } @else {
+          <p>
+            ¿Ya tienes cuenta?
+
+            <button class="link text-primary ml-1 hover:text-pink-800 hover:underline transition-colors duration-200" 
+                    (click)="toggleMode()">
+              Inicia sesión
+            </button>
+          </p>
+        }
+      </div>
+    </div>
+  </section>
+</main>

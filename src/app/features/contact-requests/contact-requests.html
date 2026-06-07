@@ -1,7 +1,135 @@
-<div class="min-h-screen bg-surface-container-low pt-28 px-6 md:px-[64px]">
-  <div class="max-w-[1280px] mx-auto">
-    <span class="text-sm font-semibold text-primary uppercase tracking-widest block mb-2">Mensajería Segura</span>
-    <h1 class="text-[48px] font-bold text-on-surface mb-6">Solicitudes de Contacto</h1>
-    <p class="text-base text-on-surface-variant">Próximamente: Bandeja de entrada protegida mediante autenticación de Firebase.</p>
-  </div>
-</div>
+<main class="grain-overlay mesh-gradient">
+   <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <section class="py-[80px] md:py-[160px] px-6 md:px-[64px] pb-[40px] md:pb-[40px]">
+    <div class="w-full mx-auto max-w-[1280px] flex flex-col">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
+            Ingeniería en ciencias de la computación
+          </p>
+          <h2 class="text-[48px] font-title text-on-surface">Solicitud de Contacto: </h2>
+          <p class="text-on-surface-variant mt-4"> Rellene el siguiente formulario con sus datos personales:</p>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div
+        class="glass rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5 p-8 md:p-12"
+      >
+        <form class="space-y-8">
+
+          <!-- Nombre -->
+          <div>
+            <label
+              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+            >
+              Nombre completo
+            </label>
+
+            <input
+              type="text"
+              placeholder="Ingresa tu nombre"
+              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
+            />
+          </div>
+
+          <!-- Correo -->
+          <div>
+            <label
+              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+            >
+              Correo electrónico
+            </label>
+
+            <input
+              type="email"
+              placeholder="correo@ejemplo.com"
+              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
+            />
+          </div>
+
+          <!-- Programador -->
+          <div>
+            <label
+              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+            >
+              Programador
+            </label>
+
+            <select
+              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
+            >
+              <option value="">Seleccionar programador</option>
+              <option>Carolina Fortmann</option>
+            </select>
+          </div>
+
+          <!-- Proyecto -->
+          <div>
+            <label
+              class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+            >
+              Idea o descripción del proyecto
+            </label>
+
+            <textarea
+              rows="6"
+              placeholder="Describe tu proyecto, requerimientos, objetivos y tecnologías deseadas..."
+              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 resize-none focus:outline-none focus:border-primary"
+            ></textarea>
+          </div>
+
+          <!-- Campos automáticos -->
+          <div class="grid md:grid-cols-2 gap-6">
+
+            <div>
+              <label
+                class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+              >
+                Fecha de creación
+              </label>
+
+              <input
+                type="text"
+                value="Automática"
+                readonly
+                class="w-full rounded-xl border border-outline-variant/30 bg-gray-100 px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+              >
+                Estado
+              </label>
+
+              <input
+                type="text"
+                value="Pendiente"
+                readonly
+                class="w-full rounded-xl border border-outline-variant/30 bg-gray-100 px-4 py-3"
+              />
+            </div>
+
+          </div>
+
+          <!-- Botón -->
+          <div class="flex justify-center pt-4">
+            <button
+              type="submit"
+              class="bg-primary text-on-primary py-4 px-10 rounded-full text-sm font-semibold uppercase tracking-widest btn-hover-effect transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              Enviar solicitud
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>

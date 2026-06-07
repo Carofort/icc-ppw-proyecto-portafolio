@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, ElementRef, inject, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-hero',
@@ -9,6 +10,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './app-hero.css',
 })
 export class AppHero implements OnInit {
+
+  authService = inject(AuthService);
+  private router = inject(Router);
+
+  goToRequest() {
+    if (this.authService.currentUser()) {
+      this.router.navigate(['/contact-requests']);
+    } else {
+      this.router.navigate(['/auth']);
+    }
+  }
+
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
