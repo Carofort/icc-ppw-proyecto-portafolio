@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactRequestService } from '../../core/services/contact-request.service';
+import { AuthService } from '../../core/services/auth';
+import { effect } from '@angular/core';
 
 @Component({
   selector: 'app-contact-requests',
@@ -8,13 +11,34 @@ import { ContactRequestService } from '../../core/services/contact-request.servi
   imports: [FormsModule],
   templateUrl: './contact-requests.html',
 })
-export class ContactRequests {
+export class ContactRequests  {
   nombre = '';
   correo = '';
   programador = '';
   descripcion = '';
 
   private contactRequestService = inject(ContactRequestService);
+  private authService = inject(AuthService);
+
+  misSolicitudes: any[] = [];
+
+  constructor() {
+  effect(() => {
+    const user = this.authService.currentUser();
+
+    console.log('Usuario:', user);
+
+    if (!user) return;
+
+    this.contactRequestService
+      .getRequestsByUser(user.uid)
+      .subscribe((data) => {
+        console.log('Solicitudes encontradas:', data);
+        this.misSolicitudes = data;
+      });
+  });
+}
+
   async enviarSolicitud(): Promise<void> {
     const request = {
       nombreSolicitante: this.nombre,
@@ -22,10 +46,10 @@ export class ContactRequests {
       programador: this.programador,
       descripcionProyecto: this.descripcion,
 
+      uidUsuario: this.authService.uid,
+
       fechaCreacion: new Date(),
-
       estado: 'Pendiente',
-
       respuesta: '',
     };
 

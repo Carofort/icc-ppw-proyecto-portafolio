@@ -129,5 +129,67 @@
         </form>
       </div>
     </div>
+
+    <!-- Mis solicitudes -->
+
+    <div class="mt-16">
+      <h3 class="font-title text-[36px] text-on-surface mb-8">Mis solicitudes</h3>
+
+      @if (misSolicitudes.length === 0) {
+        <div class="glass rounded-xl border border-outline-variant/30 shadow-xl p-8">
+          <p class="text-on-surface-variant">Todavía no has enviado ninguna solicitud.</p>
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 gap-8">
+          @for (solicitud of misSolicitudes; track solicitud.id) {
+            <div class="glass rounded-xl border border-outline-variant/30 shadow-xl p-8">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <h3 class="font-title text-[28px] text-on-surface">
+                    {{ solicitud.programador }}
+                  </h3>
+
+                  <p class="text-on-surface-variant">
+                    {{ solicitud.fechaCreacion?.toDate()?.toLocaleDateString() }}
+                  </p>
+                </div>
+
+                <span
+                  class="px-4 py-2 rounded-full text-sm font-semibold"
+                  [class.bg-yellow-100]="solicitud.estado === 'Pendiente'"
+                  [class.text-yellow-700]="solicitud.estado === 'Pendiente'"
+                  [class.bg-green-100]="solicitud.estado === 'Respondida'"
+                  [class.text-green-700]="solicitud.estado === 'Respondida'"
+                >
+                  {{ solicitud.estado }}
+                </span>
+              </div>
+
+              <div class="mb-6">
+                <p class="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+                  Proyecto solicitado:
+                </p>
+
+                <p class="text-on-surface-variant">
+                  {{ solicitud.descripcionProyecto }}
+                </p>
+              </div>
+
+              @if (solicitud.respuesta) {
+                <div class="mt-6 border-t border-outline-variant/30 pt-6">
+                  <p class="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+                    Respuesta del programador:
+                  </p>
+
+                  <p class="text-on-surface">
+                    {{ solicitud.respuesta }}
+                  </p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
   </section>
 </main>

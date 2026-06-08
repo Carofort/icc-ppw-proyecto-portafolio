@@ -15,16 +15,26 @@ export class AppHeader {
   currentUser = this.authService.currentUser;
 
   goToRequest() {
-    if (this.authService.currentUser()) {
-      this.router.navigate(['/contact-requests']);
-    } else {
-      this.router.navigate(['/auth']);
-    }
+  const user = this.authService.currentUser();
+
+  console.log('Email:', this.authService.currentUser()?.email);
+console.log('Rol:', this.authService.role());
+
+  if (!user) {
+    this.router.navigate(['/auth']);
+    return;
   }
 
-  logout() {
-  this.authService.logout().subscribe(() => {
-    this.router.navigate(['/home']);
-  });
+  if (this.authService.role() === 'admin') {
+    this.router.navigate(['/admin-requests']);
+  } else {
+    this.router.navigate(['/contact-requests']);
+  }
 }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/home']);
+    });
+  }
 }

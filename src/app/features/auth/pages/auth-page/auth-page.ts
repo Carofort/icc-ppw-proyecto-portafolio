@@ -20,9 +20,20 @@ export class AuthPage {
   isLoading = signal(false);
 
   authForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [Validators.required, Validators.email, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)],
+    ],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  get email() {
+    return this.authForm.get('email');
+  }
+
+  get password() {
+    return this.authForm.get('password');
+  }
 
   toggleMode() {
     this.isLogin.update((v) => !v);
@@ -31,7 +42,10 @@ export class AuthPage {
   }
 
   onSubmit() {
-    if (this.authForm.invalid) return;
+    if (this.authForm.invalid) {
+      this.authForm.markAllAsTouched();
+      return;
+    }
 
     const { email, password } = this.authForm.value;
 
@@ -44,7 +58,6 @@ export class AuthPage {
 
     action$.subscribe({
       next: () => {
-        // AQUÍ iremos al formulario de solicitud
         this.router.navigate(['/contact-requests']);
       },
       error: (err) => {

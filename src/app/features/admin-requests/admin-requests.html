@@ -24,6 +24,7 @@
       <!-- Filtro -->
       <div class="flex justify-start mb-8">
         <select
+          [(ngModel)]="filtro"
           class="glass rounded-full px-6 py-3 border border-outline-variant/30 focus:outline-none focus:border-primary"
         >
           <option>Todas</option>
@@ -34,81 +35,104 @@
 
       <!-- Lista de solicitudes -->
       <div class="grid grid-cols-1 gap-8">
-        <div
-          class="glass rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5 p-8 md:p-12"
-        >
-          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8">
-            <div>
-              <h3 class="font-title text-[30px] text-on-surface">Juan Pérez</h3>
+        @if (solicitudesFiltradas.length === 0) {
+          <div class="glass rounded-xl border border-outline-variant/30 p-10 hover:-translate-y-2 transition-all duration-500 shadow-xl flex flex-col text-center">
+            <p class="text-on-surface-variant text-lg">
+              @if (filtro === 'Pendientes') {
+                No hay solicitudes pendientes.
+              } @else if (filtro === 'Respondidas') {
+                No hay solicitudes respondidas.
+              } @else {
+                No hay solicitudes registradas.
+              }
+            </p>
+          </div>
+        }
+        @for (solicitud of solicitudesFiltradas; track solicitud.id) {
+          <div
+            class="glass rounded-xl border border-outline-variant/30 shadow-xl shadow-tertiary/5 p-8 md:p-12"
+          >
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8">
+              <div>
+                <h3 class="font-title text-[30px] text-on-surface">
+                  {{ solicitud.nombreSolicitante }}
+                </h3>
 
-              <p class="text-on-surface-variant">juan@email.com</p>
+                <p class="text-on-surface-variant">
+                  {{ solicitud.correoSolicitante }}
+                </p>
+              </div>
+
+              <span
+                class="px-4 py-2 rounded-full text-sm font-semibold self-start"
+                [class.bg-yellow-100]="solicitud.estado === 'Pendiente'"
+                [class.text-yellow-700]="solicitud.estado === 'Pendiente'"
+                [class.bg-green-100]="solicitud.estado === 'Respondida'"
+                [class.text-green-700]="solicitud.estado === 'Respondida'"
+              >
+                {{ solicitud.estado }}
+              </span>
             </div>
 
-            <span
-              class="px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 text-sm font-semibold self-start"
-            >
-              Pendiente
-            </span>
+            <!-- Proyecto -->
+            <div class="mb-8">
+              <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
+                Proyecto solicitado:
+              </p>
+
+              <p class="text-on-surface-variant leading-relaxed">
+                {{ solicitud.descripcionProyecto }}
+              </p>
+            </div>
+
+            <!-- Fecha -->
+            <div class="mb-8">
+              <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
+                Fecha de creación:
+              </p>
+
+              <p class="text-on-surface-variant">
+                {{ solicitud.fechaCreacion?.toDate()?.toLocaleDateString() }}
+              </p>
+            </div>
+
+            <!-- Respuesta -->
+            <div class="mb-8">
+              <label
+                class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2"
+              >
+                Respuesta:
+              </label>
+
+              <textarea
+                rows="5"
+                [(ngModel)]="solicitud.respuesta"
+                placeholder="Escribe una respuesta para el solicitante..."
+                class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 resize-none focus:outline-none focus:border-primary"
+              ></textarea>
+            </div>
+
+            <!-- Botón -->
+            <div class="flex justify-center pt-4">
+              <button
+                (click)="guardarCambios(solicitud)"
+                [disabled]="!solicitud.respuesta?.trim()"
+                class="bg-primary text-on-primary py-4 px-10 rounded-full text-sm font-semibold uppercase tracking-widest btn-hover-effect transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              >
+                Guardar cambios
+              </button>
+            </div>
           </div>
-
-          <!-- Proyecto -->
-          <div class="mb-8">
-            <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
-              Proyecto solicitado:
-            </p>
-
-            <p class="text-on-surface-variant leading-relaxed">
-              Necesito una plataforma web para gestión de inventarios con reportes, autenticación de
-              usuarios y panel administrativo para control de productos.
-            </p>
-          </div>
-
-          <!-- Fecha -->
-          <div class="mb-8">
-            <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
-              Fecha de creación:
-            </p>
-
-            <p class="text-on-surface-variant">12/06/2026</p>
-          </div>
-
-          <!-- Estado -->
-          <div class="mb-8">
-            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
-              Estado
-            </label>
-
-            <select
-              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 focus:outline-none focus:border-primary"
-            >
-              <option>Pendiente</option>
-              <option>Respondida</option>
-            </select>
-          </div>
-
-          <!-- Respuesta -->
-          <div class="mb-8">
-            <label class="block text-sm font-semibold uppercase tracking-widest text-primary mb-2">
-              Respuesta
-            </label>
-
-            <textarea
-              rows="5"
-              placeholder="Escribe una respuesta para el solicitante..."
-              class="w-full rounded-xl border border-outline-variant/30 bg-white/20 px-4 py-3 resize-none focus:outline-none focus:border-primary"
-            ></textarea>
-          </div>
-
-          <!-- Botón -->
-          <div class="flex justify-center pt-4">
-            <button
-              class="bg-primary text-on-primary py-4 px-10 rounded-full text-sm font-semibold uppercase tracking-widest btn-hover-effect transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              Guardar cambios
-            </button>
-          </div>
-        </div>
+        }
       </div>
+    </div>
+    <div class="flex justify-center mt-16">
+      <button
+        (click)="scrollToTop()"
+        class="text-on-surface hover:text-primary transition-colors flex items-center gap-2 text-sm font-semibold uppercase tracking-widest pb-2 border-b border-on-surface/20"
+      >
+        Volver al inicio ↑
+      </button>
     </div>
   </section>
 </main>

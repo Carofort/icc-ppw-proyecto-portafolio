@@ -64,7 +64,7 @@
       @if (currentUser()) {
         <div class="flex items-center gap-4">
           <span class="hidden lg:block text-sm text-on-surface-variant truncate max-w-120px">
-            ¡Hola, {{ currentUser()?.displayName }}!
+            ¡Hola, {{ currentUser()?.email }}!
           </span>
 
           <button

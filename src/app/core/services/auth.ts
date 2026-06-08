@@ -1,6 +1,12 @@
 import { Injectable, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import {
+  Auth,
+  authState,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from '@angular/fire/auth';
 import { from } from 'rxjs';
 import { GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 
@@ -12,13 +18,12 @@ export class AuthService {
   // toSignal convierte el Observable en un signal reactivo para usar en templates.
   currentUser = toSignal(authState(this.auth));
 
-  // SOLO DEMO EN CLASE:
-  // Rol por correo para pruebas rapidas de UI/guards.
-  // No usar como mecanismo de seguridad real.
   role = computed<'admin' | 'user' | null>(() => {
     const u = this.currentUser();
+
     if (!u) return null;
-    return u.email === 'admin@ups.edu.ec' ? 'admin' : 'user';
+
+    return u.email === 'dayannafort@gmail.com' ? 'admin' : 'user';
   });
 
   // signInWithEmailAndPassword devuelve una Promise.
@@ -31,7 +36,7 @@ export class AuthService {
   register(email: string, password: string) {
     return from(createUserWithEmailAndPassword(this.auth, email, password));
   }
-  
+
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     return from(signInWithPopup(this.auth, provider));
