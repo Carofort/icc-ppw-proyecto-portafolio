@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProjectService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:1337/api/proyectos?populate=*';
+  private apiUrl = 'https://delicate-presence-af112459c7.strapiapp.com/api/proyectos?populate=*';
 
   getProjects() {
     return this.http.get<any>(this.apiUrl);

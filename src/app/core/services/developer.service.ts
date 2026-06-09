@@ -8,7 +8,7 @@ export class DeveloperService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:1337/api/programadors?populate=*';
+  private apiUrl = 'https://delicate-presence-af112459c7.strapiapp.com/api/programadors?populate=*';
 
   getDevelopers() {
     return this.http.get<any>(this.apiUrl);

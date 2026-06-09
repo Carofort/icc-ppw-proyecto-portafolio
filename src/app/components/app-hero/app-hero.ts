@@ -28,7 +28,8 @@ export class AppHero implements OnInit {
     this.developerService.getDevelopers().subscribe({
       next: (response) => {
         this.developer = response.data[0];
-        this.profileImage = 'http://localhost:1337' + response.data[0].foto.url;
+        this.profileImage =
+          'https://delicate-presence-af112459c7.strapiapp.com' + response.data[0].foto.url;
         this.cdr.detectChanges();
       },
       error: (error) => {

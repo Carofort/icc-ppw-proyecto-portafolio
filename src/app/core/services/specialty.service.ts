@@ -8,8 +8,7 @@ export class SpecialtyService {
 
   private http = inject(HttpClient);
 
-  private apiUrl =
-    'http://localhost:1337/api/especialidads';
+  private apiUrl = 'https://delicate-presence-af112459c7.strapiapp.com/api/especialidads';
 
   getSpecialties() {
     return this.http.get<any>(this.apiUrl);
