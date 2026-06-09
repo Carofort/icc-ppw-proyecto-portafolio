@@ -22,143 +22,53 @@
       </div>
       <div class="grid grid-cols-1 gap-10">
         <!-- PROYECTO DESTACADO -->
-        <div
-          class="glass flex flex-col md:flex-row overflow-hidden rounded-xl border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 min-h-[420px]"
-        >
-          <div class="md:w-1/3 h-80 md:h-auto overflow-hidden">
-            <img
-              src="/img-laberinto.png"
-              alt="Proyecto Destacado"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Contenido -->
-          <div class="md:w-2/3 p-10 flex flex-col justify-start">
-            <h3 class="font-title text-[36px] font-medium mb-3">Laberinto de Algoritmos</h3>
-
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                Visual Studio Code
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                Java
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                MVC
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                BFS/DFS
-              </span>
-            </div>
-
-            <p class="text-base text-on-surface-variant mb-8 leading-relaxed">
-              Implementación de un solucionador de laberintos usando algoritmos BFS, DFS,
-              programación dinámica y recursividad. Incluye interfaz gráfica interactiva
-              desarrollada en Java con arquitectura MVC.
-            </p>
-
-            <p class="text-base text-on-surface-variant mb-8 leading-relaxed">
-              Proyecto realizado en grupo con otros estudiantes de la carrera, con el objetivo de
-              aplicar conceptos de algoritmos y estructuras de datos en un contexto práctico, además
-              de desarrollar habilidades de trabajo en equipo y gestión de proyectos.
-            </p>
-
-            <a
-              href="https://github.com/Carofort/icc-proyecto-Final.git"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-primary text-on-primary py-3 px-6 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest self-center"
+        <div class="grid grid-cols-1 gap-10">
+          @for (project of projects; track project.id) {
+            <div
+              class="glass flex flex-col md:flex-row overflow-hidden rounded-xl border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5"
             >
-              Ver repositorio
-            </a>
-          </div>
-        </div>
+              @if (project.imagen) {
+                <div class="md:w-1/3 h-80 md:h-auto overflow-hidden">
+                  <img
+                    [src]="'http://localhost:1337' + project.imagen.url"
+                    [alt]="project.titulo"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              }
 
-        <!-- DOS PROYECTOS PEQUEÑOS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Proyecto 1 -->
-          <div
-            class="glass rounded-xl border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500  shadow-xl shadow-tertiary/5 p-10 flex flex-col"
-          >
-            <h3 class="font-title text-[30px] font-medium mb-3">Proyecto JavaScript</h3>
+              <div class="flex-1 p-10 flex flex-col">
+                <h3 class="font-title text-[30px] font-medium mb-3">
+                  {{ project.titulo }}
+                </h3>
 
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                Visual Studio Code
-              </span>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  @for (tech of project.tecnologia.split(','); track tech) {
+                    <span
+                      class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                    >
+                      {{ tech.trim() }}
+                    </span>
+                  }
+                </div>
 
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                HTML
-              </span>
+                <p class="text-base text-on-surface-variant mb-8 leading-relaxed flex-grow">
+                  {{ project.descripcion }}
+                </p>
 
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                JavaScript
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                CSS
-              </span>
+                <div class="flex gap-4 justify-center">
+                  <a
+                    [href]="project.repositorio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-primary text-on-primary py-3 px-6 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest"
+                  >
+                    Ver repositorio
+                  </a>
+                </div>
+              </div>
             </div>
-
-            <p class="text-base text-on-surface-variant mb-8 leading-relaxed flex-grow">
-              Implementación de un solucionador de laberintos usando algoritmos BFS, DFS,
-              programación dinámica y recursividad. Incluye interfaz gráfica interactiva
-              desarrollada en JavaScript.
-            </p>
-
-            <a
-              href="https://github.com/Carofort/icc-ppw-u1-frameworks-web.git"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-primary text-on-primary py-3 px-6 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest self-center"
-            >
-              Ver repositorio
-            </a>
-          </div>
-
-          <!-- Proyecto 2 -->
-          <div
-            class="glass rounded-xl border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500  shadow-xl shadow-tertiary/5 p-10 flex flex-col"
-          >
-            <h3 class="font-title text-[30px] font-medium mb-3">Proyecto Angular</h3>
-
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                Visual Studio Code
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                HTML
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                JavaScript
-              </span>
-
-              <span class="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                Tailwind CSS
-              </span>
-            </div>
-
-            <p class="text-base text-on-surface-variant mb-8 leading-relaxed flex-grow">
-              Desarrollo de procedimientos almacenados y reportes analíticos en Oracle PL/SQL,
-              incluyendo manejo de transacciones, consultas complejas y automatización de procesos
-              de base de datos.
-            </p>
-
-            <a
-              href="https://github.com/Carofort/icc-ppw-u1-angular-practicas.git"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-primary text-on-primary py-3 px-6 rounded-full text-sm font-semibold btn-hover-effect uppercase tracking-widest self-center"
-            >
-              Ver repositorio
-            </a>
-          </div>
+          }
         </div>
       </div>
     </div>

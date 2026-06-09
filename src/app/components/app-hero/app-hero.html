@@ -20,9 +20,8 @@
         <h1
           class="text-[32px] md:text-[56px] font-title font-bold text-on-surface leading-tight mb-8"
         >
-          Portafolio de 
-          <span class="italic text-primary">Carolina Fortmann</span> Programación de Plataformas
-          Web
+          Portafolio de
+          <span class="italic text-primary">Carolina Fortmann</span> Programación de Plataformas Web
         </h1>
         <h3 class="text-[18px] md:text-[24px] font-body text-on-surface-variant mb-8">
           ICC - Universidad Politécnica Salesiana - 2026
@@ -131,119 +130,35 @@
 
       <!-- Grid de Especializaciones -->
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-        <!-- Card 1 -->
-        <div
-          class="glass rounded-[28px] p-8 border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 group"
-        >
+        @for (specialty of specialties; track specialty.id) {
           <div
-            class="w-32 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500"
+            class="glass rounded-[28px] p-8 border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 group"
           >
-            <span class="material-symbols-outlined font-semibold text-[25px]"> CODE </span>
+            <div
+              class="w-32 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500"
+            >
+              <span class="material-symbols-outlined font-semibold text-[25px]">
+                {{ specialty.icono }}
+              </span>
+            </div>
+
+            <h3 class="font-title text-[28px] mb-4">
+              {{ specialty.titulo }}
+            </h3>
+
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              {{ specialty.descripcion }}
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              @for (tech of specialty.tecnologias.split(','); track tech) {
+                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                  {{ tech.trim() }}
+                </span>
+              }
+            </div>
           </div>
-
-          <h3 class="font-title text-[28px] mb-4">Frontend Development</h3>
-
-          <p class="text-on-surface-variant leading-relaxed mb-6">
-            Interfaces modernas, responsivas e interactivas utilizando Angular, TailwindCSS y
-            TypeScript.
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> Angular </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
-              Tailwind
-            </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
-              TypeScript
-            </span>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div
-          class="glass rounded-[28px] p-8 border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 group"
-        >
-          <div
-            class="w-35 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-          >
-            <span class="material-symbols-outlined font-semibold text-[25px]"> DATABASE </span>
-          </div>
-
-          <h3 class="font-title text-[28px] mb-4">Backend & APIs</h3>
-
-          <p class="text-on-surface-variant leading-relaxed mb-6">
-            Diseño de APIs REST, integración de servicios backend y manejo eficiente de bases de
-            datos.
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
-              Firebase
-            </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
-              Oracle SQL
-            </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> Strapi </span>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="glass rounded-[28px] p-8 border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 group"
-        >
-          <div
-            class="w-32 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-          >
-            <span class="material-symbols-outlined font-semibold text-[25px]"> BRUSH </span>
-          </div>
-
-          <h3 class="font-title text-[28px] mb-4">UI / UX Design</h3>
-
-          <p class="text-on-surface-variant leading-relaxed mb-6">
-            Diseño de interfaces centradas en el usuario con enfoque editorial, minimalista y
-            responsive.
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> Figma </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs">
-              Responsive
-            </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> UX </span>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div
-          class="glass rounded-[28px] p-8 border border-outline-variant/30 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-tertiary/5 group"
-        >
-          <div
-            class="w-35 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500"
-          >
-            <span class="material-symbols-outlined font-semibold text-[25px]"> TERMINAL </span>
-          </div>
-
-          <h3 class="font-title text-[28px] mb-4">Software Engineering</h3>
-
-          <p class="text-on-surface-variant leading-relaxed mb-6">
-            Desarrollo de soluciones aplicando arquitectura MVC, programación orientada a objetos y
-            buenas prácticas.
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> Java </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> MVC </span>
-
-            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs"> GitHub </span>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>
@@ -281,22 +196,18 @@
           </div>
           <div class="flex justify-between items-start gap-4 p-8">
             <div>
-              <div class="flex gap-2 mb-4">
-                <span
-                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >Visual Studio Code</span
-                >
-                <span
-                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >Java</span
-                >
+              <div class="flex gap-2 mb-4 flex-wrap">
+                @for (tech of proyectos[0]?.tecnologia?.split(',') ?? []; track tech) {
+                  <span
+                    class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
+                  >
+                    {{ tech.trim() }}
+                  </span>
+                }
               </div>
-              <h3 class="text-[32px] font-medium mb-2">Laberinto de Algoritmos</h3>
+              <h3 class="text-[32px] font-medium mb-2">{{ proyectos[0]?.titulo }}</h3>
               <p class="text-base text-on-surface-variant">
-                Aplicación que implementa un algoritmo para encontrar la ruta óptima desde un punto
-                de inicio (A) hasta un punto de destino (B) en un laberinto. Para ello, se utilizan
-                conceptos avanzados de programación dinámica y estructuras de datos lineales y no
-                lineales.
+                {{ proyectos[0]?.descripcion }}
               </p>
             </div>
             <button
@@ -328,26 +239,18 @@
           </div>
           <div class="flex justify-between items-start gap-4 p-8">
             <div>
-              <div class="flex gap-2 mb-4">
-                <span
-                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >Visual Studio Code</span
-                >
-                <span
-                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >JavaScript</span
-                >
-                <span
-                  class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
-                  >HTML</span
-                >
+              <div class="flex gap-2 mb-4 flex-wrap">
+                @for (tech of proyectos[1]?.tecnologia?.split(',') ?? []; track tech) {
+                  <span
+                    class="px-3 py-1 bg-primary/10 text-primary bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-medium"
+                  >
+                    {{ tech.trim() }}
+                  </span>
+                }
               </div>
-              <h3 class="text-[32px] font-medium mb-2">Principios de JavaScript</h3>
+              <h3 class="text-[32px] font-medium mb-2">{{ proyectos[1]?.titulo }}</h3>
               <p class="text-base text-on-surface-variant">
-                Realizado en Visual Studio Code, este proyecto se centra en la implementación de los
-                principios básicos en JavaScript y HTML. El objetivo es demostrar cómo aplicar estos
-                principios para mejorar la calidad, mantenibilidad y escalabilidad del código en
-                proyectos de desarrollo web.
+                {{ proyectos[1]?.descripcion }}
               </p>
             </div>
             <button

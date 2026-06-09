@@ -3,6 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
 import { DeveloperService } from '../../core/services/developer.service';
 import { Developer } from '../../core/interfaces/developer';
+import { ProjectService } from '../../core/services/project.service';
+import { SpecialtyService } from '../../core/services/specialty.service';
 
 @Component({
   selector: 'app-hero',
@@ -12,18 +14,51 @@ import { Developer } from '../../core/interfaces/developer';
   styleUrl: './app-hero.css',
 })
 export class AppHero implements OnInit {
-
   private developerService = inject(DeveloperService);
+  private projectService = inject(ProjectService);
+  private specialtyService = inject(SpecialtyService);
   private cdr = inject(ChangeDetectorRef);
 
   developer?: Developer;
   profileImage = '';
+  proyectos: any[] = [];
+  specialties: any[] = [];
 
   loadDeveloper(): void {
     this.developerService.getDevelopers().subscribe({
       next: (response) => {
         this.developer = response.data[0];
         this.profileImage = 'http://localhost:1337' + response.data[0].foto.url;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
+  loadProjects(): void {
+    this.projectService.getProjects().subscribe({
+      next: (response) => {
+        this.proyectos = response.data;
+
+        console.log('Proyectos:', this.proyectos);
+
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
+  loadSpecialties(): void {
+    this.specialtyService.getSpecialties().subscribe({
+      next: (response) => {
+        this.specialties = response.data;
+
+        console.log('Especialidades:', this.specialties);
+
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -47,6 +82,8 @@ export class AppHero implements OnInit {
 
   ngOnInit(): void {
     this.loadDeveloper();
+    this.loadProjects();
+    this.loadSpecialties();
     // Añadimos la lógica de microinteracciones interactivas para las tarjetas que venía en el script nativo
     const cards = this.el.nativeElement.querySelectorAll('.glass');
     cards.forEach((card: HTMLElement) => {
