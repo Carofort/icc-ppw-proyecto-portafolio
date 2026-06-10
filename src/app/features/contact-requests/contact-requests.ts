@@ -11,6 +11,7 @@ import { effect } from '@angular/core';
   imports: [FormsModule],
   templateUrl: './contact-requests.html',
 })
+
 export class ContactRequests  {
   nombre = '';
   correo = '';
@@ -26,7 +27,8 @@ export class ContactRequests  {
   effect(() => {
     const user = this.authService.currentUser();
 
-    console.log('Usuario:', user);
+    console.log('Usuario actual:', user);
+    console.log('UID actual:', user?.uid);
 
     if (!user) return;
 

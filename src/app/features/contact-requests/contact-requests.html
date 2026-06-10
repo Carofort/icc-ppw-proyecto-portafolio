@@ -133,15 +133,15 @@
     <!-- Mis solicitudes -->
 
     <div class="mt-16">
-      <h3 class="font-title text-[36px] text-on-surface mb-8">Mis solicitudes</h3>
-
+      <h3 class="font-title text-[36px] text-on-surface mb-8">Mis solicitudes:</h3>
+      <p class="text-on-surface-variant">Total solicitudes: {{ misSolicitudes.length }}</p>
       @if (misSolicitudes.length === 0) {
         <div class="glass rounded-xl border border-outline-variant/30 shadow-xl p-8">
           <p class="text-on-surface-variant">Todavía no has enviado ninguna solicitud.</p>
         </div>
       } @else {
         <div class="grid grid-cols-1 gap-8">
-          @for (solicitud of misSolicitudes; track solicitud.id) {
+          @for (solicitud of misSolicitudes; track solicitud) {
             <div class="glass rounded-xl border border-outline-variant/30 shadow-xl p-8">
               <div class="flex justify-between items-start mb-6">
                 <div>

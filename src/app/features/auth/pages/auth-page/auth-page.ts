@@ -57,8 +57,14 @@ export class AuthPage {
       : this.authService.register(email!, password!);
 
     action$.subscribe({
-      next: () => {
-        this.router.navigate(['/contact-requests']);
+      next: (credential) => {
+        const email = credential.user.email;
+
+        if (email === 'dayannafort@gmail.com') {
+          this.router.navigate(['/admin-requests']);
+        } else {
+          this.router.navigate(['/contact-requests']);
+        }
       },
       error: (err) => {
         console.error(err);
@@ -77,30 +83,19 @@ export class AuthPage {
     this.errorMessage.set(null);
 
     this.authService.loginWithGoogle().subscribe({
-      next: () => {
-        this.router.navigate(['/contact-requests']);
+      next: (credential) => {
+        const email = credential.user.email;
+
+        if (email === 'dayannafort@gmail.com') {
+          this.router.navigate(['/admin-requests']);
+        } else {
+          this.router.navigate(['/contact-requests']);
+        }
       },
       error: (err) => {
-        // Captura si cierran la ventana emergente antes de tiempo o si falla Firebase
         if (err.code !== 'auth/popup-closed-by-user') {
           this.errorMessage.set('Error al conectar con Google. Inténtalo de nuevo.');
         }
-        this.isLoading.set(false);
-      },
-    });
-  }
-  // Método auxiliar para no duplicar la suscripción del formulario original
-  private handleAuthSubscription(action$: any) {
-    action$.subscribe({
-      next: () => {
-        this.router.navigate(['/contact-requests']);
-      },
-      error: () => {
-        this.errorMessage.set(
-          this.isLogin()
-            ? 'Correo o contraseña incorrectos.'
-            : 'No se pudo crear la cuenta. El correo puede estar en uso.',
-        );
         this.isLoading.set(false);
       },
     });
